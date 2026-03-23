@@ -8,6 +8,7 @@ const SignUp = () => {
 			<div className="min-h-screen flex flex-col">
 				<div className="flex justify-center items-center flex-1">
 					<Card>
+						<h1 className="text-xl font-bold">Sign Up</h1>
 						<Input
 							name="firstname"
 							placeholder="Enter your First Name"
@@ -32,6 +33,9 @@ const SignUp = () => {
 							label="Password"
 							type="password"
 						/>
+						<button className="btn btn-primary rounded-full mt-5">
+							Submit
+						</button>
 					</Card>
 				</div>
 			</div>
