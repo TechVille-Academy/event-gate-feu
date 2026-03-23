@@ -2,8 +2,11 @@ import React from "react";
 import { NavLink } from "react-router";
 import SignUpIcon from "./icons/SignUpIcon";
 import HomeIcon from "./icons/HomeIcon";
+import { useContext } from "react";
+import { SessionContext } from "../contexts/SessionContext";
 
 const NavBar = () => {
+	const session = useContext(SessionContext);
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
 			<div className="flex w-full max-w-7xl mx-auto">
@@ -21,10 +24,15 @@ const NavBar = () => {
 						<HomeIcon className="text-lg" />
 						Home
 					</NavLink>
-					<NavLink to="/sign-up" className="btn btn-primary mr-4 rounded-full">
-						<SignUpIcon className="text-lg" />
-						Sign Up
-					</NavLink>
+					{!session && (
+						<NavLink
+							to="/sign-up"
+							className="btn btn-primary mr-4 rounded-full"
+						>
+							<SignUpIcon className="text-lg" />
+							Sign Up
+						</NavLink>
+					)}
 					<div className="dropdown dropdown-end">
 						<div
 							tabIndex={0}
