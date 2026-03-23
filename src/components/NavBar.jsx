@@ -4,9 +4,16 @@ import SignUpIcon from "./icons/SignUpIcon";
 import HomeIcon from "./icons/HomeIcon";
 import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
+import { supabase } from "../utils/supabase";
 
 const NavBar = () => {
 	const session = useContext(SessionContext);
+
+	const handleLogout = async () => {
+		const { error } = await supabase.auth.signOut();
+		if (error) alert("ewan ko sayo");
+	};
+
 	return (
 		<div className="navbar bg-base-100 shadow-sm">
 			<div className="flex w-full max-w-7xl mx-auto">
@@ -60,7 +67,7 @@ const NavBar = () => {
 								<a>Settings</a>
 							</li>
 							<li>
-								<a>Logout</a>
+								<button onClick={handleLogout}>Logout</button>
 							</li>
 						</ul>
 					</div>
