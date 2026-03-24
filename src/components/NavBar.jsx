@@ -24,12 +24,12 @@ const NavBar = () => {
 						<span className="text-secondary">Gate</span>
 					</a>
 				</div>
-				<div className="flex-none">
+				<div className="flex">
 					<NavLink
 						to="/"
-						className="btn btn-primary mr-4 rounded-full btn-outline"
+						className="mr-4 rounded-full btn-outline inline-flex items-center text-primary"
 					>
-						<HomeIcon className="text-lg" />
+						<HomeIcon className="text-md mr-1" />
 						Home
 					</NavLink>
 					{!session && (
@@ -37,7 +37,7 @@ const NavBar = () => {
 						<>
 							<NavLink
 								to="/sign-up"
-								className="btn btn-primary mr-4 rounded-full"
+								className="btn btn-secondary mr-4 rounded-full"
 							>
 								<SignUpIcon className="text-lg" />
 								Sign Up
