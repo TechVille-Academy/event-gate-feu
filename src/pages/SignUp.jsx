@@ -26,14 +26,28 @@ const SignUp = () => {
 			password: formData.get("password"),
 		};
 
-		const { data, error } = await supabase.auth.signUp({
-			email: signupForm.email,
-			password: signupForm.password,
-		});
+		const { data: signUpData, error: signUpError } = await supabase.auth.signUp(
+			{
+				email: signupForm.email,
+				password: signupForm.password,
+			},
+		);
 
-		if (error) alert(error);
+		if (signUpError) alert(signUpError);
 
-		if (data) console.log(data);
+		if (signUpData) {
+			const { data: profileData, error: profileError } = await supabase
+				.from("profiles")
+				.insert({
+					id: signUpData.user.id,
+					firstname: signupForm.firstname,
+					lastname: signupForm.lastname,
+					email: signupForm.email,
+				});
+
+			if (profileError) alert(profileError);
+			if (profileData) console.log("profileData", profileData);
+		}
 	};
 
 	return (
