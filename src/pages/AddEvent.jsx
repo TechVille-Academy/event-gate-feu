@@ -3,10 +3,15 @@ import MainLayout from "../layouts/MainLayout";
 import Input from "../components/form/Input";
 
 const AddEvent = () => {
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		console.log("form submit triggered");
+	};
+
 	return (
 		<MainLayout>
 			<div className="pt-5">
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="flex">
 						<div className="w-1/3">
 							{/* title, start date, end date, start time, end time, location */}
@@ -60,7 +65,9 @@ const AddEvent = () => {
 						</div>
 					</div>
 					<div className="text-right mt-5">
-						<button className="btn btn-primary rounded-full">Save Event</button>
+						<button className="btn btn-primary rounded-full" type="submit">
+							Save Event
+						</button>
 					</div>
 				</form>
 			</div>
