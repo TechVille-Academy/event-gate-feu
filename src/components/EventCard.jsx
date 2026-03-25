@@ -11,6 +11,7 @@ const EventCard = ({ event }) => {
 			<p>Start Time: {event.start_time}</p>
 			<p>End Time: {event.end_time}</p>
 			<p>Location: {event.location}</p>
+
 			<div className="pt-5">
 				<Link
 					to={`/edit-event/${event.id}`}
@@ -18,6 +19,7 @@ const EventCard = ({ event }) => {
 				>
 					Edit
 				</Link>
+
 				<Link
 					to={`/view-event/${event.id}`}
 					className="btn btn-primary rounded-full ml-3 btn-outline"
