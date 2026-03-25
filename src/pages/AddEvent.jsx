@@ -1,11 +1,24 @@
 import React from "react";
 import MainLayout from "../layouts/MainLayout";
 import Input from "../components/form/Input";
+import { supabase } from "../utils/supabase";
+import { useNavigate } from "react-router";
 
 const AddEvent = () => {
-	const handleSubmit = (event) => {
+	const navigate = useNavigate();
+
+	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log("form submit triggered");
+		const formData = new FormData(event.target);
+		const formDataObject = Object.fromEntries(formData.entries());
+
+		const { data: eventData, error: eventError } = await supabase
+			.from("events")
+			.insert(formDataObject)
+			.select()
+			.single();
+		if (eventError) alert(eventError);
+		if (eventData) navigate("/manage-events");
 	};
 
 	return (
