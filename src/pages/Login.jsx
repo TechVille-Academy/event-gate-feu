@@ -9,14 +9,16 @@ import { SessionContext } from "../contexts/SessionContext";
 import { useNavigate } from "react-router";
 
 const Login = () => {
-	const { session } = useContext(SessionContext);
+	const { profile } = useContext(SessionContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		if (session) {
+		if (profile?.role === "user") {
 			navigate("/");
+		} else if (profile?.role === "admin") {
+			navigate("/manage-events");
 		}
-	}, [session, navigate]);
+	}, [profile, navigate]);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();

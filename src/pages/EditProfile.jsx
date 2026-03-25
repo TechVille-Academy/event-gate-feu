@@ -4,7 +4,7 @@ import Card from "../components/Card";
 import SignUpIcon from "../components/icons/SignUpIcon";
 import SendIcon from "../components/icons/SendIcon";
 import { supabase } from "../utils/supabase";
-import { useEffect, useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router";
 import { SessionContext } from "../contexts/SessionContext";
 

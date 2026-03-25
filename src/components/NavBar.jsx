@@ -8,7 +8,7 @@ import { supabase } from "../utils/supabase";
 import LoginIcon from "./icons/LoginIcon";
 
 const NavBar = () => {
-	const { session } = useContext(SessionContext);
+	const { session, profile } = useContext(SessionContext);
 
 	const handleLogout = async () => {
 		const { error } = await supabase.auth.signOut();
@@ -51,6 +51,14 @@ const NavBar = () => {
 								Login
 							</NavLink>
 						</>
+					)}
+					{profile?.role === "admin" && (
+						<NavLink
+							to="/manage-events"
+							className="mr-4 rounded-full btn-outline inline-flex items-center text-primary"
+						>
+							Manage Events
+						</NavLink>
 					)}
 					{/* nullish value, undefined, "", 0, null */}
 					{/* (session) && - if session is not nullish value then execute whatever code after the && */}
