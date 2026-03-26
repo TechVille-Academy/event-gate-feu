@@ -3,12 +3,23 @@ import Card from "./Card";
 import { Link } from "react-router";
 import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
+import { supabase } from "../utils/supabase";
 
 const EventCard = ({ event }) => {
 	const { profile } = useContext(SessionContext);
 
-	const register = async (eventId) => {
-		console.log(`todo: register event ${eventId}`);
+	const register = async () => {
+		const { data, error } = await supabase
+			.from("registrations")
+			.insert({
+				event_id: event.id,
+				profile_id: profile.id,
+			})
+			.select()
+			.single();
+
+		if (error) alert(error);
+		if (data) console.log("data", data);
 	};
 
 	return (
@@ -44,12 +55,7 @@ const EventCard = ({ event }) => {
 				)}
 
 				{profile?.role === "user" && (
-					<button
-						class="ml-3 btn btn-primary rounded-full"
-						onClick={() => {
-							register(event.id);
-						}}
-					>
+					<button class="ml-3 btn btn-primary rounded-full" onClick={register}>
 						Register
 					</button>
 				)}
