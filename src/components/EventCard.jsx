@@ -5,8 +5,15 @@ import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 import { supabase } from "../utils/supabase";
 
-const EventCard = ({ event }) => {
+const EventCard = ({ event, registrations }) => {
 	const { profile } = useContext(SessionContext);
+	const isRegistered = registrations.some(
+		(registration) =>
+			registration.profile_id === profile?.id &&
+			registration.event_id === event.id,
+	);
+
+	console.log(isRegistered);
 
 	const register = async () => {
 		const { data, error } = await supabase
@@ -54,12 +61,23 @@ const EventCard = ({ event }) => {
 					</>
 				)}
 
-				{profile?.role === "user" && (
+				{profile?.role === "user" && !isRegistered && (
 					<button class="ml-3 btn btn-primary rounded-full" onClick={register}>
 						Register
 					</button>
 				)}
+
+				{profile?.role === "user" && isRegistered && (
+					<button
+						class="ml-3 btn btn-secondary rounded-full"
+						onClick={register}
+					>
+						Unregister
+					</button>
+				)}
 			</div>
+
+			{isRegistered && <p>You are already registered</p>}
 		</Card>
 	);
 };

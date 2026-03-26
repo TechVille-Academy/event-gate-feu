@@ -32,7 +32,7 @@ const Events = () => {
 			if (registrationsError) alert(registrationsError);
 			if (registrationsData) setRegistrations(registrationsData);
 		};
-		fetchRegistrations();
+		if (profile) fetchRegistrations();
 	}, [profile]);
 
 	console.log("registrations", registrations);
@@ -42,7 +42,7 @@ const Events = () => {
 			<div className="pt-5">
 				<div className="grid grid-cols-3 gap-4">
 					{events?.map((event) => {
-						return <EventCard event={event} />;
+						return <EventCard event={event} registrations={registrations} />;
 					})}
 				</div>
 			</div>
