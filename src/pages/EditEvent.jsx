@@ -24,7 +24,7 @@ const EditEvent = () => {
 	}, [eventId]);
 	return (
 		<MainLayout>
-			<EventForm event={event} />
+			<EventForm eventData={event} />
 		</MainLayout>
 	);
 };
