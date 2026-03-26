@@ -95,8 +95,6 @@ const EventCard = ({ event, registrations, setRegistrations }) => {
 					</button>
 				)}
 			</div>
-
-			{isRegistered && <p>You are already registered</p>}
 		</Card>
 	);
 };
