@@ -52,6 +52,7 @@ const NavBar = () => {
 							</NavLink>
 						</>
 					)}
+
 					{profile?.role === "admin" && (
 						<NavLink
 							to="/manage-events"
@@ -60,6 +61,16 @@ const NavBar = () => {
 							Manage Events
 						</NavLink>
 					)}
+
+					{profile?.role === "user" && (
+						<NavLink
+							to="/events"
+							className="mr-4 rounded-full btn-outline inline-flex items-center text-primary"
+						>
+							Events
+						</NavLink>
+					)}
+
 					{/* nullish value, undefined, "", 0, null */}
 					{/* (session) && - if session is not nullish value then execute whatever code after the && */}
 					{/* (!session) && - if session is nullish then execute whatever code right after the &&*/}
