@@ -1,5 +1,5 @@
 import "./App.css";
-import { Routes, Route } from "react-router";
+import { Routes, Route, useNavigate } from "react-router";
 import HomePage from "./pages/HomePage";
 import SignUp from "./pages/SignUp";
 import { useState, useEffect } from "react";
@@ -16,6 +16,7 @@ import Events from "./pages/Events";
 function App() {
 	const [session, setSession] = useState(null);
 	const [profile, setProfile] = useState(null);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const {
@@ -26,6 +27,7 @@ function App() {
 			if (event === "SIGNED_OUT") {
 				setSession(null);
 				setProfile(null);
+				navigate("/log-in");
 			} else if (session) {
 				setSession(session);
 			}
