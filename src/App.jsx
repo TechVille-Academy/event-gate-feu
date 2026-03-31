@@ -42,7 +42,7 @@ function App() {
 				.from("profiles")
 				.select()
 				.eq("id", session.user.id)
-				.single();
+				.maybeSingle();
 
 			if (error) alert(error);
 			if (data) {

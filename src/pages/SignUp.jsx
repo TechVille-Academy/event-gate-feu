@@ -9,7 +9,7 @@ import { useNavigate } from "react-router";
 import { SessionContext } from "../contexts/SessionContext";
 
 const SignUp = () => {
-	const { session } = useContext(SessionContext);
+	const { session, setProfile } = useContext(SessionContext);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -43,10 +43,12 @@ const SignUp = () => {
 					firstname: signupForm.firstname,
 					lastname: signupForm.lastname,
 					email: signupForm.email,
-				});
+				})
+				.select()
+				.single();
 
 			if (profileError) alert(profileError);
-			if (profileData) console.log("profileData", profileData);
+			if (profileData) setProfile(profileData);
 		}
 	};
 
