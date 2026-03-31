@@ -36,20 +36,18 @@ const Events = () => {
 	}, [profile]);
 
 	return (
-		<MainLayout>
-			<div className="pt-5">
-				<div className="grid grid-cols-3 gap-4">
-					{events?.map((event) => {
-						return (
-							<EventCard
-								key={event.id}
-								event={event}
-								registrations={registrations}
-								setRegistrations={setRegistrations}
-							/>
-						);
-					})}
-				</div>
+		<MainLayout className="py-10">
+			<div className="grid grid-cols-3 gap-4">
+				{events?.map((event) => {
+					return (
+						<EventCard
+							key={event.id}
+							event={event}
+							registrations={registrations}
+							setRegistrations={setRegistrations}
+						/>
+					);
+				})}
 			</div>
 		</MainLayout>
 	);
