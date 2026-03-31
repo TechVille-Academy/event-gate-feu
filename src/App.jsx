@@ -33,7 +33,6 @@ function App() {
 				setProfile(null);
 				navigate("/log-in");
 			} else if (session) {
-				setIsLoading(false);
 				setSession(session);
 			}
 		});
@@ -55,6 +54,7 @@ function App() {
 			if (data) {
 				setProfile(data);
 			}
+			setIsLoading(false);
 		};
 
 		if (session) {
@@ -64,7 +64,7 @@ function App() {
 
 	return (
 		<SessionContext.Provider
-			value={{ session, profile, setProfile, isLoading }}
+			value={{ session, profile, setProfile, isLoading, setIsLoading }}
 		>
 			<Routes>
 				<Route path="/" element={<HomePage />} />

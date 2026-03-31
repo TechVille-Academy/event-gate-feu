@@ -7,10 +7,11 @@ import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 
 const SignUp = () => {
-	const { setProfile } = useContext(SessionContext);
+	const { setProfile, setIsLoading } = useContext(SessionContext);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		setIsLoading(true);
 		const formData = new FormData(event.target);
 		const signupForm = {
 			firstname: formData.get("firstname"),
@@ -40,7 +41,10 @@ const SignUp = () => {
 				.select()
 				.single();
 
-			if (profileError) alert(profileError);
+			if (profileError) {
+				alert(profileError);
+				setIsLoading(false);
+			}
 			if (profileData) setProfile(profileData);
 		}
 	};

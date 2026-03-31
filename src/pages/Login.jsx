@@ -3,10 +3,14 @@ import MainLayout from "../layouts/MainLayout";
 import Card from "../components/Card";
 import SendIcon from "../components/icons/SendIcon";
 import { supabase } from "../utils/supabase";
+import { useContext } from "react";
+import { SessionContext } from "../contexts/SessionContext";
 
 const Login = () => {
+	const { setIsLoading } = useContext(SessionContext);
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+		setIsLoading(true);
 		const formData = new FormData(event.target);
 		const loginForm = {
 			email: formData.get("email"),
@@ -18,7 +22,10 @@ const Login = () => {
 			password: loginForm.password,
 		});
 
-		if (error) alert(error);
+		if (error) {
+			alert(error);
+			setIsLoading(false);
+		}
 
 		if (data) console.log(data);
 	};
