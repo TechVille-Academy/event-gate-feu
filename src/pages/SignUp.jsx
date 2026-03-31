@@ -1,20 +1,13 @@
 import Input from "../components/form/Input";
 import MainLayout from "../layouts/MainLayout";
 import Card from "../components/Card";
-import SignUpIcon from "../components/icons/SignUpIcon";
 import SendIcon from "../components/icons/SendIcon";
 import { supabase } from "../utils/supabase";
-import { useEffect, useContext } from "react";
-import { useNavigate } from "react-router";
+import { useContext } from "react";
 import { SessionContext } from "../contexts/SessionContext";
 
 const SignUp = () => {
-	const { session, setProfile } = useContext(SessionContext);
-	const navigate = useNavigate();
-
-	useEffect(() => {
-		if (session) navigate("/");
-	}, [session, navigate]);
+	const { setProfile } = useContext(SessionContext);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();

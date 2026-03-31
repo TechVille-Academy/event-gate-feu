@@ -7,7 +7,7 @@ const ProtectedRoute = ({ allowedRoles }) => {
 
 	if (isLoading) return <div>Loading</div>;
 
-	if (!session) return <Navigate to="/" replace />;
+	if (!session) return <Navigate to="/log-in" replace />;
 
 	if (allowedRoles && profile) {
 		if (!allowedRoles.includes(profile.role)) {

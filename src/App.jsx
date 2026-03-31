@@ -13,6 +13,7 @@ import AddEvent from "./pages/AddEvent";
 import EditEvent from "./pages/EditEvent";
 import Events from "./pages/Events";
 import ProtectedRoute from "./components/ProtectedRoute";
+import GuestRoute from "./components/GuestRoute";
 
 function App() {
 	const [session, setSession] = useState(null);
@@ -67,8 +68,11 @@ function App() {
 		>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
-				<Route path="/sign-up" element={<SignUp />} />
-				<Route path="/log-in" element={<Login />} />
+
+				<Route element={<GuestRoute />}>
+					<Route path="/sign-up" element={<SignUp />} />
+					<Route path="/log-in" element={<Login />} />
+				</Route>
 
 				<Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
 					<Route path="/events" element={<Events />} />
