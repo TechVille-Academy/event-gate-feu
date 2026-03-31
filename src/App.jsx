@@ -12,10 +12,12 @@ import ManageEvents from "./pages/ManageEvents";
 import AddEvent from "./pages/AddEvent";
 import EditEvent from "./pages/EditEvent";
 import Events from "./pages/Events";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 	const [session, setSession] = useState(null);
 	const [profile, setProfile] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -25,10 +27,12 @@ function App() {
 			console.log("event", event);
 			console.log("session", session);
 			if (event === "SIGNED_OUT") {
+				setIsLoading(false);
 				setSession(null);
 				setProfile(null);
 				navigate("/log-in");
 			} else if (session) {
+				setIsLoading(false);
 				setSession(session);
 			}
 		});
@@ -58,17 +62,25 @@ function App() {
 	}, [session]);
 
 	return (
-		<SessionContext.Provider value={{ session, profile, setProfile }}>
+		<SessionContext.Provider
+			value={{ session, profile, setProfile, isLoading }}
+		>
 			<Routes>
 				<Route path="/" element={<HomePage />} />
 				<Route path="/sign-up" element={<SignUp />} />
 				<Route path="/log-in" element={<Login />} />
-				<Route path="/profile" element={<Profile />} />
-				<Route path="/edit-profile" element={<EditProfile />} />
-				<Route path="/manage-events" element={<ManageEvents />} />
-				<Route path="/add-event" element={<AddEvent />} />
-				<Route path="/edit-event/:eventId" element={<EditEvent />} />
-				<Route path="/events" element={<Events />} />
+
+				<Route element={<ProtectedRoute allowedRoles={["user", "admin"]} />}>
+					<Route path="/events" element={<Events />} />
+					<Route path="/profile" element={<Profile />} />
+					<Route path="/edit-profile" element={<EditProfile />} />
+				</Route>
+
+				<Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
+					<Route path="/manage-events" element={<ManageEvents />} />
+					<Route path="/add-event" element={<AddEvent />} />
+					<Route path="/edit-event/:eventId" element={<EditEvent />} />
+				</Route>
 			</Routes>
 		</SessionContext.Provider>
 	);

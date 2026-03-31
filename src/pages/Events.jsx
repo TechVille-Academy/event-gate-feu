@@ -35,8 +35,6 @@ const Events = () => {
 		if (profile) fetchRegistrations();
 	}, [profile]);
 
-	console.log("registrations", registrations);
-
 	return (
 		<MainLayout>
 			<div className="pt-5">
