@@ -40,40 +40,36 @@ const EditProfile = () => {
 	};
 
 	return (
-		<MainLayout>
-			<div className="min-h-screen flex flex-col">
-				<div className="flex justify-center items-center flex-1">
-					<Card>
-						<h1 className="text-xl font-bold">Edit Profile</h1>
-						<form onSubmit={handleSubmit}>
-							<Input
-								name="firstname"
-								placeholder="Enter your First Name"
-								label="Firstname"
-								type="text"
-								defaultValue={profile?.firstname}
-							/>
-							<Input
-								name="lastname"
-								placeholder="Enter your Last Name"
-								label="Lastname"
-								type="text"
-								defaultValue={profile?.lastname}
-							/>
-							<Input
-								name="email"
-								placeholder="Enter your Email"
-								label="Email"
-								type="email"
-								defaultValue={profile?.email}
-							/>
-							<button className="btn btn-primary rounded-full mt-5">
-								<SendIcon className="text-sm" /> Submit
-							</button>
-						</form>
-					</Card>
-				</div>
-			</div>
+		<MainLayout className="flex justify-center items-center">
+			<Card>
+				<h1 className="text-xl font-bold">Edit Profile</h1>
+				<form onSubmit={handleSubmit}>
+					<Input
+						name="firstname"
+						placeholder="Enter your First Name"
+						label="Firstname"
+						type="text"
+						defaultValue={profile?.firstname}
+					/>
+					<Input
+						name="lastname"
+						placeholder="Enter your Last Name"
+						label="Lastname"
+						type="text"
+						defaultValue={profile?.lastname}
+					/>
+					<Input
+						name="email"
+						placeholder="Enter your Email"
+						label="Email"
+						type="email"
+						defaultValue={profile?.email}
+					/>
+					<button className="btn btn-primary rounded-full mt-5">
+						<SendIcon className="text-sm" /> Submit
+					</button>
+				</form>
+			</Card>
 		</MainLayout>
 	);
 };
