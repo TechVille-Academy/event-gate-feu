@@ -36,7 +36,7 @@ function App() {
 		return () => {
 			subscription.unsubscribe();
 		};
-	}, []);
+	}, [navigate]);
 
 	useEffect(() => {
 		const fetchProfile = async () => {
