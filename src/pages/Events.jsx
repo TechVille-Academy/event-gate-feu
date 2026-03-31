@@ -44,6 +44,7 @@ const Events = () => {
 					{events?.map((event) => {
 						return (
 							<EventCard
+								key={event.id}
 								event={event}
 								registrations={registrations}
 								setRegistrations={setRegistrations}
