@@ -81,14 +81,17 @@ const EventCard = ({ event, registrations, setRegistrations }) => {
 				)}
 
 				{profile?.role === "user" && !isRegistered && (
-					<button class="ml-3 btn btn-primary rounded-full" onClick={register}>
+					<button
+						className="ml-3 btn btn-primary rounded-full"
+						onClick={register}
+					>
 						Register
 					</button>
 				)}
 
 				{profile?.role === "user" && isRegistered && (
 					<button
-						class="ml-3 btn btn-secondary rounded-full"
+						className="ml-3 btn btn-secondary rounded-full"
 						onClick={unregister}
 					>
 						Unregister
